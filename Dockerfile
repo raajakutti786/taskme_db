@@ -1,8 +1,8 @@
 FROM node:14
 
-RUN mkdir app
+# RUN mkdir app
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Create app directory
 
@@ -11,15 +11,15 @@ WORKDIR /app
 # where available (npm@5+)
 
 # Bundle app source
-COPY . .
-
 COPY package*.json ./
 
 RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
 
-# EXPOSE 8080
+COPY . .
+
+EXPOSE 3000
 
 CMD [ "node", "app.js" ]
 
