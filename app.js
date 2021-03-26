@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send('<h1>Taskme DB RestAPI</h1>');
 });
 
-app.get('/dbsave', (req, res) => {
+app.post('/dbsave', (req, res) => {
   res.send('Saved in DB');
 });
 
