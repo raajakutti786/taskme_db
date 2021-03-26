@@ -4,12 +4,16 @@ const express = require('express');
 
 // Constants
 const PORT = 3000;
-const HOST = '0.0.0.0';
+const HOST = 'localhost';
 
 // App
 const app = express();
 app.get('/', (req, res) => {
-  res.send('Taskme DB RestAPI');
+  res.send('<h1>Taskme DB RestAPI</h1>');
+});
+
+app.get('/dbsave', (req, res) => {
+  res.send('Saved in DB');
 });
 
 app.listen(PORT, HOST);
