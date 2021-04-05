@@ -1,9 +1,6 @@
 module.exports = {
-    addNumbers(a,b) {
+    updateRequest(a,b) {
         return a + b
-    },
-    checkMe (a){
-        return a + 5
     }
 }
 
