@@ -3,6 +3,8 @@
 const express = require('express');
 const bodyParser = require ('body-parser')
 const localApp = require ("./helloworld")
+const redisApp = require ("./getconnection")
+const redisDB = new redisApp();
 
 // Constants
 const PORT = 3000;
@@ -11,6 +13,8 @@ const HOST = 'localhost';
 //var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({extended: false})
 
+redisDB.MakeRedisConnection();
+
 // App
 const app = express();
 app.get('/', (req, res) => {
@@ -18,8 +22,20 @@ app.get('/', (req, res) => {
 });
 
 app.post('/dbsave', urlencodedParser, (req, res) => {
+  
+// preserve newlines, etc - use valid JSON
+var tmp = JSON.stringify(req.body)
+var obj = JSON.parse(tmp.replace("\\", "").replace("\\", "").replace("\\", "").replace("\\", "")
+            .replace("\\", "").replace("\\", "").replace("\\", "").replace("\\", "").replace('}":""}', '}').replace('{"{', '{'))
+ 
+  redisDB.SetRedisValue(obj.taskname, obj.taskvalue);
+  res.send(localApp.updateRequest ("DBSave:","Backend Layer"));
+});
+
+app.get('/load', urlencodedParser, (req, res) => {
   //console.log(req);
-  res.send(localApp.updateRequest ("Updated ","Backend Layer"));
+  var temp = redisDB.GetRedisValue();
+  res.send(localApp.updateRequest ("Load:",temp));
 });
 
 app.listen(PORT, HOST);

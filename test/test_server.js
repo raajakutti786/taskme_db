@@ -9,8 +9,8 @@ describe('GET /', function () {
 
    //This is testing local code
     it ('Updating Incoming requests', () => {
-      const result = localApp.updateRequest ("Updated ","Backend Layer")
-      chai.assert.equal (result, "Updated Backend Layer")
+      const result = localApp.updateRequest ("DBSave:","Backend Layer")
+      chai.assert.equal (result, "DBSave:Backend Layer")
     })
     
 
