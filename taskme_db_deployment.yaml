@@ -17,7 +17,7 @@ spec:
         image: dvzpoc/taskmedb:latest
         ports:
         - containerPort: 3000
-        imagePullPolicy: ""
+        imagePullPolicy: Always 
       restartPolicy: Always
       serviceAccountName: ""
       volumes: null

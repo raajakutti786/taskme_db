@@ -5,10 +5,11 @@ const bodyParser = require ('body-parser')
 const localApp = require ("./helloworld")
 const redisApp = require ("./getconnection")
 const redisDB = new redisApp();
+var os = require('os');
 
 // Constants
 const PORT = 3000;
-const HOST = 'localhost';
+const HOST = os.hostname();
 
 //var jsonParser = bodyParser.json()
 var urlencodedParser = bodyParser.urlencoded({extended: false})
